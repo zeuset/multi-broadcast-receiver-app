@@ -14,7 +14,7 @@ class SeverityLevelReceiver : BroadcastReceiver() {
         Log.i(TAG, "register in app receiver")
         context.registerReceiver(this, IntentFilter().apply {
             addAction("com.zeus.receiver.severity")
-        })
+        }, Context.RECEIVER_EXPORTED)
     }
 
     fun unRegister(context: Context) {
@@ -25,7 +25,7 @@ class SeverityLevelReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         try {
             val severityLevel = intent.getStringExtra("severity_level")
-            Log.i(TAG, "onReceiver app receiver with data: $severityLevel")
+            Log.i(TAG, "App receive with data: $severityLevel")
         } catch (e: Exception) {
             Log.e(TAG, "Error from app receiver: $e")
         }
